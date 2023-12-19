@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <Button Content="Törlés" HorizontalAlignment="Left" Margin="10"/>
-            <DataGrid>
+            <DataGrid x:Name="dataGridBooks" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Cím" Binding="{Binding Title}"/>
                     <DataGridTextColumn Header="Szerző" Binding="{Binding Author}"/>

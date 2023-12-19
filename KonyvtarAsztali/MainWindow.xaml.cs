@@ -16,9 +16,18 @@ namespace KonyvtarAsztali
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Statisztika service;
         public MainWindow()
         {
             InitializeComponent();
+            Read();
+        }
+
+        private void Read()
+        {
+            this.service = new Statisztika();
+            service.Fill();
+            dataGridBooks.ItemsSource = service.Konyvek;
         }
     }
 }

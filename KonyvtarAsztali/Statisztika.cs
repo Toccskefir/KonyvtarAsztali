@@ -23,6 +23,8 @@ namespace KonyvtarAsztali
             connection = new MySqlConnection(builder.ConnectionString);
         }
 
+        public List<Konyv> Konyvek { get => konyvek; set => konyvek = value; }
+
         public void Fill()
         {
             konyvek = new List<Konyv>();
