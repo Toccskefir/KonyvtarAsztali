@@ -20,7 +20,13 @@ namespace KonyvtarAsztali
         public MainWindow()
         {
             InitializeComponent();
-            Read();
+            try
+            {
+                Read();
+            } catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         private void Read()
