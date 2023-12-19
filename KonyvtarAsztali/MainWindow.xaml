@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <StackPanel Orientation="Vertical">
+            <Button Content="Törlés" HorizontalAlignment="Left" Margin="10"/>
+            <DataGrid>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Cím" Binding="{Binding Title}"/>
+                    <DataGridTextColumn Header="Szerző" Binding="{Binding Author}"/>
+                    <DataGridTextColumn Header="Kiadás éve" Binding="{Binding Publish_year}"/>
+                    <DataGridTextColumn Header="Oldalszám" Binding="{Binding Page_count}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </Window>
