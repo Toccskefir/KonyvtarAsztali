@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -20,20 +21,46 @@ namespace KonyvtarAsztali
         public MainWindow()
         {
             InitializeComponent();
-            try
-            {
-                Read();
-            } catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+            Read();
         }
 
         private void Read()
         {
-            this.service = new Statisztika();
-            service.Fill();
-            dataGridBooks.ItemsSource = service.Konyvek;
+            try
+            {
+                this.service = new Statisztika();
+                service.Fill();
+                dataGridBooks.ItemsSource = service.Konyvek;
+            } catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                this.Close();
+            }
+        }
+
+        private void buttonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Konyv selected = dataGridBooks.SelectedItem as Konyv;
+            if (selected == null)
+            {
+                MessageBox.Show("Törléshez előbb válasszon ki könyvet!");
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Biztos szeretné törölni a kiválasztott könyvet?",
+                "Törlés", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                if (this.service.Delete(selected.Id))
+                {
+                    MessageBox.Show("Sikeres törlés!");
+                }
+                else
+                {
+                    MessageBox.Show("Sikertelen törlés!");
+                }
+                Read();
+            }
         }
     }
 }

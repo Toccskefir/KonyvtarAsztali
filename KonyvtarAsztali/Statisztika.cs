@@ -48,6 +48,22 @@ namespace KonyvtarAsztali
             CloseConnection(); 
         }
 
+        public bool Delete(int id)
+        {
+            OpenConnection();
+
+            string sql = "DELETE FROM books WHERE id = @id";
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = sql;
+            command.Parameters.AddWithValue("@id", id);
+
+            int affectedRows = command.ExecuteNonQuery();
+
+            CloseConnection();
+
+            return affectedRows == 1;
+        }
+
         private void OpenConnection()
         {
             try
