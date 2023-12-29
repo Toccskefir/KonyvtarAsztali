@@ -90,6 +90,76 @@ namespace KonyvtarAsztali
             {
                 throw new Exception("Hiba a kapcsolódás során: " + e.Message);
             }
-        }   
+        }
+
+        public int LongerThan500Page()
+        {
+            int count = 0;
+            foreach (Konyv item in konyvek)
+            {
+                if (item.Page_count > 500)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        public bool OlderThan1950()
+        {
+            foreach (Konyv item in konyvek)
+            {
+                if (item.Publish_year < 1950)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public Konyv LongestBook()
+        {
+            Konyv longest = konyvek[0];
+            foreach (Konyv item in konyvek)
+            {
+                if (item.Page_count > longest.Page_count)
+                {
+                    longest = item;
+                }
+            }
+
+            return longest;
+        }
+
+        public string MostPopularAuthor()
+        {
+            Dictionary<string, int> authors = new Dictionary<string, int>();
+            foreach (Konyv item in konyvek)
+            {
+                if (authors.ContainsKey(item.Author))
+                {
+                    authors[item.Author]++;
+                }
+                else
+                {
+                    authors.Add(item.Author, 1);
+                }
+            }
+
+            string mostPopular = "";
+            int max = 0;
+            foreach (KeyValuePair<string, int> item in authors)
+            {
+                if (item.Value > max)
+                {
+                    max = item.Value;
+                    mostPopular = item.Key;
+                }
+            }
+
+            return mostPopular;
+        }
     }
 }
