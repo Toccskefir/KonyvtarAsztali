@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "KonyvtarWPF": {
+      "commandName": "Project"
+    },
+    "Stat": {
+      "commandName": "Project",
+      "commandLineArgs": "--stat"
+    }
+  }
+}
